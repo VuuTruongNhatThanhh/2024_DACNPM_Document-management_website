@@ -1,129 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ include file="header2.jsp" %>
- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
- 	 	
- 	 	  <div class="bg-img">
-      <div class="content">
-      <div id="close-div"><button onclick="closeLog()" id="close">X</button></div>
-        <header id="he" >ĐĂNG NHẬP</header>
-   
-        <form method="post" action="/loginCheck" onsubmit="return isValidForm()" >
-        
-         <div class="field">
-            <span class="fa fa-user"></span>
-            <input id="in-user" name="username" required placeholder="Tài khoản"/>
-          
-          
-          </div>
-          <div id="u-error" style="height: 25px;color: #a2f125;font-weight: bold;"></div>
-          <div class="field space">
-            <span class="fa fa-lock"></span>
-            <input type="password" name="password"  id="pas" class="pass-key" required placeholder="Mật khẩu">
-            
-          </div>
-          <div id="p-error" style="height: 25px;color: #a2f125;font-weight: bold;"></div>
-          <div class="pass">
-            
-          </div>
-          <div class="field">
-            <input id="login-submit" type="submit" value="Đăng nhập">
-          </div>
-        
-        
-        </form>
-       
-       
-        <div onclick="showReg()" id="sa" class="signup">Chưa có tài khoản?
-          <a href="#" onclick="showReg()">Đăng kí ngay</a>
-        </div>
-      </div>
-    </div>
-<script type="text/javascript">
-	function showReg() {
-		
-		var xmlhttp=new XMLHttpRequest();
-	  	xmlhttp.onreadystatechange=function() {
-	    	if (this.readyState==4 && this.status==200) {
-	    		document.getElementById("login-div").innerHTML=this.responseText;
-	      		
-	    	}
-	  	}
-	  	xmlhttp.open("GET","/showReg",true);
-	  	xmlhttp.send();
-	}
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" type="text/css" href="../../css/login.css">
+</head>
+<body>
+<div class="login-container">
+    <h2>Đăng nhập</h2>
+    <c:if test="${not empty error}">
+        <div class="error-message">${error}</div>
+    </c:if>
+    <form class="login-form" action="/login" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Đăng nhập">
+    </form>
+</div>
 
-</script>
-<script type="text/javascript">
-function isValidForm() {
-
-	var username=document.getElementById("in-user").value;
-	var pw=document.getElementById("pas").value;
-	var xmlhttp=new XMLHttpRequest();
-	
-  	xmlhttp.onreadystatechange=function() {
-    	if (this.readyState==4 && this.status==200) {
-      		document.getElementById("u-error").innerHTML=this.responseText;
-      		
-      		
-    	}
-  	}
-  	xmlhttp.open("Get","/loginCheckU?username="+username,false);
-  	xmlhttp.send();
-  	
-  	
-  	
-  	
-	var xmlhttp2=new XMLHttpRequest();
-	
-  	xmlhttp2.onreadystatechange=function() {
-    	if (this.readyState==4 && this.status==200) {
-      		document.getElementById("p-error").innerHTML=this.responseText;
-      		
-      		
-    	}
-  	}
-  	xmlhttp2.open("Get","/loginCheckP?username="+username+"&pw="+pw,false);
-  	xmlhttp2.send();
-  	var b=document.getElementById("u-error").innerHTML;
-  	var b1=document.getElementById("p-error").innerHTML;
-  	if(b!==""||b1!==""){
-		return false;
-	}
-	return true;
-	
-	
-}
-</script>
-<script type="text/javascript">
-function closeLog() {
-	document.getElementById("login-div").innerHTML="";
-}
-
-</script>
-
-    <script>
-      const pass_field = document.querySelector('.pass-key');
-      const showBtn = document.querySelector('.show');
-      showBtn.addEventListener('click', function(){
-       if(pass_field.type === "password"){
-         pass_field.type = "text";
-         showBtn.textContent = "HIDE";
-         showBtn.style.color = "#3498db";
-       }else{
-         pass_field.type = "password";
-         showBtn.textContent = "SHOW";
-         showBtn.style.color = "#222";
-       }
-      });
-    </script>
-	
-	
-	
- 	 	
-  
-  
-
-  
-  </body>
+</body>
 </html>

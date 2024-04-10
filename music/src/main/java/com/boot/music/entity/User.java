@@ -30,25 +30,26 @@ public class User {
 	 * 
 	 * @Column, default is fullname col
 	 */
-	@Column(name = "Name")
-	private String fullName;
+	@Column(name = "name")
+	private String name;
 	
 	/*
 	 * check weather the email follow regexp
 	 * 
 	 * @Email(regexp = "/^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/")
 	 */
+	@Column(unique = true)
 	private String email;
 	/*
 	 * you need to check if phone is in correct format, but for simplicity's sake,
 	 * check for it in front end
 	 */	
 	private String phone;
-	
+	@Column(name = "password")
 	private String password;
 	
 	private int role;
-	@Column(name = "Access_Level")
+	@Column(name = "access_level")
 	private int accessLevel;
 	
 	/*
@@ -65,11 +66,11 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFullName() {
-		return fullName;
+	public String getName() {
+		return name;
 	}
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -107,10 +108,10 @@ public class User {
 	public void setDocumentList(List<Document> documentList) {
 		this.documentList = documentList;
 	}
-	public User(String fullName,  String email, String phone,
+	public User(String name,  String email, String phone,
 			String password, int role, int accessLevel) {
 		super();
-		this.fullName = fullName;
+		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
