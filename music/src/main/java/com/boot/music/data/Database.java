@@ -42,40 +42,42 @@ public class Database {
 		public void run(String... args) throws Exception {
 			SimpleDateFormat sdf= new SimpleDateFormat("DD-MM-YYYY");
 		
-			User u= new User("hoa hau", "1@gmail.com", "0855555", "1234ds", 0, 0);
-//			userRe.save(u);
-//			userRe.save(new User("hoa hau2", "2@gmail.com", "08666666", "1234ds", 0, 0));
-			Document d= new Document("Phuong an phong tranh thien tai", "Nham doi pho voi tinh hinh thien tai trong tuong lai.... ",
-					sdf.parse("19-5-2024"), sdf.parse("19-5-2026"),u);
-			
-			/*
-			* save to DB using repository examples since I use unique constrain on status
-			* name, run the save status code 1 time only, or delete the status table
-			*/
-			Status pending=new Status("PENDING");
-			statRepo.save(pending);
-			statRepo.save(new Status("HIDDEN"));
-			statRepo.save(new Status("APPROVED"));
-			statRepo.save(new Status("REJECTED"));
-			
-/*
-* save using persistence, see file xml in resources->META-INF
-* for each class in entity, add the following structure to persistence-unit
-* <class>com.boot.music.entity.User</class>
-* then parse in unit name as argument for createEntityManagerFactory();
-*/
-			EntityManagerFactory emf= Persistence.createEntityManagerFactory("dms");
-			EntityManager em=emf.createEntityManager();
-			EntityTransaction t= em.getTransaction();
-			t.begin();
-			em.persist(u);
-			t.commit();
-			em.close();
-			emf.close();
-			//end 
-			Version v= new Version("ver1", sdf.parse("19-5-2024"), sdf.parse("19-5-2024"), d, "phuong an neu ra nhung diem can luu y....");
-			d.getVersionList().add(v);
-			docRe.save(d);
+//			User u= new User("hoa hau", "1@gmail.com", "0855555", "1234ds", 0, 0);
+////			userRe.save(u);
+////			userRe.save(new User("hoa hau2", "2@gmail.com", "08666666", "1234ds", 0, 0));
+//			Document d= new Document("Phuong an phong tranh thien tai", "Nham doi pho voi tinh hinh thien tai trong tuong lai.... ",
+//					sdf.parse("19-5-2024"), sdf.parse("19-5-2026"),u);
+//			
+//			/*
+//			* save to DB using repository examples since I use unique constrain on status
+//			* name, run the save status code 1 time only, or delete the status table
+//			*/
+//			Status pending=new Status("PENDING");
+//			statRepo.save(pending);
+//			statRepo.save(new Status("HIDDEN"));
+//			statRepo.save(new Status("APPROVED"));
+//			statRepo.save(new Status("REJECTED"));
+//			
+///*
+//* save using persistence, see file xml in resources->META-INF
+//* for each class in entity, add the following structure to persistence-unit
+//* <class>com.boot.music.entity.User</class>
+//* then parse in unit name as argument for createEntityManagerFactory();
+//*/
+//			EntityManagerFactory emf= Persistence.createEntityManagerFactory("dms");
+//			EntityManager em=emf.createEntityManager();
+//			EntityTransaction t= em.getTransaction();
+//			t.begin();
+//			em.persist(u);
+//			t.commit();
+//			em.close();
+//			emf.close();
+//			//end 
+//			Version v= new Version("ver1", sdf.parse("19-5-2024"), sdf.parse("19-5-2024"), d, "phuong an neu ra nhung diem can luu y....");
+//			d.getVersionList().add(v);
+//			docRe.save(d);
+//			docRe.findByStatusID((short)1);
+//			logger.info(docRe.findByStatusID((short)1).get(0).getTitle());
 			
 			
 //			Locale locale = new Locale("vi", "VN");      

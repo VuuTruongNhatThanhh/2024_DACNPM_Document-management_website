@@ -33,7 +33,7 @@ public class Document implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "UserID")
 	public User user;
-	private short status_ID;
+	private short statusID;
 	@OneToMany(mappedBy = "document"
 			, cascade = CascadeType.ALL)
 	private List<Version> versionList;
@@ -45,7 +45,7 @@ public class Document implements Serializable{
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.user = user;
-		this.status_ID=1;
+		this.statusID=1;
 		versionList= new ArrayList<Version>();
 	}
 	public String getSumary() {
@@ -82,10 +82,10 @@ public class Document implements Serializable{
 		this.user = user;
 	}
 	public short getStatus() {
-		return status_ID;
+		return statusID;
 	}
 	public void setStatus(short status_ID) {
-		this.status_ID = status_ID;
+		this.statusID = status_ID;
 	}
 	public List<Version> getVersionList() {
 		return versionList;
