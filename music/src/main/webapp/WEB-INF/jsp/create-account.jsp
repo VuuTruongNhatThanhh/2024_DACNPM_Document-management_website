@@ -10,7 +10,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Create Account</h1>
+                <h1>Tạo tài khoản</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -30,9 +30,12 @@
             <div class="col-md-12">
               <div class="card card-outline card-primary">
                 <div class="card-body">
-                  <form action="#" method="post">
+                  <form action="/register" method="post">
+                      <c:if test="${not empty error}">
+                          <div style="color: red" class="error-message">${error}</div>
+                      </c:if>
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Full name">
+                      <input id="name" name="name" type="text" class="form-control" placeholder="Họ và tên">
                       <div class="input-group-append">
                         <div class="input-group-text">
                           <span class="fas fa-user"></span>
@@ -40,7 +43,7 @@
                       </div>
                     </div>
                     <div class="input-group mb-3">
-                      <input type="email" class="form-control" placeholder="Email">
+                      <input type="email" class="form-control" placeholder="Email" id="email" name="email">
                       <div class="input-group-append">
                         <div class="input-group-text">
                           <span class="fas fa-envelope"></span>
@@ -48,21 +51,53 @@
                       </div>
                     </div>
                     <div class="input-group mb-3">
-                      <input type="password" class="form-control" placeholder="Password">
+                      <input type="password" class="form-control" placeholder="Mật khẩu" id="password" name="password"  >
                       <div class="input-group-append">
                         <div class="input-group-text">
                           <span class="fas fa-lock"></span>
                         </div>
                       </div>
                     </div>
-                    <div class="input-group mb-3">
-                      <input type="password" class="form-control" placeholder="Retype password">
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span class="fas fa-lock"></span>
-                        </div>
+<%--                    <div class="input-group mb-3">--%>
+<%--                      <input type="password" class="form-control" placeholder="Nhập lại mật khẩu">--%>
+<%--                      <div class="input-group-append">--%>
+<%--                        <div class="input-group-text">--%>
+<%--                          <span class="fas fa-lock"></span>--%>
+<%--                        </div>--%>
+<%--                      </div>--%>
+<%--                    </div>--%>
+
+                      <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Số điện thoại" id="phone" name="phone">
+                          <div class="input-group-append">
+                              <div class="input-group-text">
+                                  <span class="fas fa-phone"></span>
+                              </div>
+                          </div>
                       </div>
-                    </div>
+                      <div class="input-group mb-3">
+<%--                          <input type="text" class="form-control" placeholder="Vai trò">--%>
+<%--                          <div class="input-group-append">--%>
+<%--                              <div class="input-group-text">--%>
+<%--                                  <span class="fas fa-user"></span>--%>
+<%--                              </div>--%>
+<%--                          </div>--%>
+
+    <select class="form-control" id="role" name="role">
+        <option selected disabled >-- Vai trò --</option>
+        <option value="1">Người quản trị</option>
+        <option value="2">Biên tập viên</option>
+    </select><br>
+                      </div>
+                      <div class="input-group mb-3">
+
+                          <select class="form-control" id="accessLevel" name="accessLevel">
+                              <option selected disabled>-- Quyền hạn --</option>
+                              <option value="1">Quyền đọc 1</option>
+                              <option value="2">Quyền đọc 2</option>
+                              <option value="3">Quyền đọc 3</option>
+                          </select><br>
+                      </div>
                     <div class="row">
                       <div class="col-10"></div>
                       <!-- /.col -->

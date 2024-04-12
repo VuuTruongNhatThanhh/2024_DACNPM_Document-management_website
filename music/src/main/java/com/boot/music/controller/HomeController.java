@@ -50,12 +50,12 @@ public class HomeController {
 		model.addObject("demo", "1 object hoặc giá trị cần truyền sang jsp");
 		return model;
 		}
-	@GetMapping("/acc")
-	public ModelAndView account(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("accounts");
-
-		return model;
-		}
+//	@GetMapping("/acc")
+//	public ModelAndView account(ModelAndView model , HttpSession session) {
+//		model= new ModelAndView("accounts");
+//
+//		return model;
+//		}
 	@GetMapping("/documents")
 	public ModelAndView doc(ModelAndView model , HttpSession session) {
 		model= new ModelAndView("documents");
