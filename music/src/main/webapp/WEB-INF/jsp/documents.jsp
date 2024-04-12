@@ -1,3 +1,5 @@
+<%@page import="com.boot.music.entity.Document"%>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,38 +37,47 @@
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Version</th>
+                        <th>Title</th>
+                        <th>DateStart</th>
+                        <th>DateEnd</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>10001</td>
-                        <td>ABC</td>
-                        <td>1.0</td>
-                        <td>Approved</td>
-                        <td>
-                          <div class="btn-toolbar" role="toolbar">
-                            <div class="btn-group mr-2" role="group">
-                              <button type="button" class="btn" style="background-color: #04AA6D;" data-toggle="modal" data-target="#documentViewModal">View</button>
-                            </div>
-                            <div class="btn-group mr-2" role="group">
-                              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#documentEditModal">Edit</button>
-                            </div>
-                            <div class="btn-group" role="group">
-                              <button id="approveBtn" type="button" class="btn btn-primary">Approve</button>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
+                    <% List<Document> lstDocument = (List<Document>) request.getAttribute("lstDocument"); %>
+                    <% for (Document docObj : lstDocument) { %>
+                    	<tr>
+	                        <td><%= docObj.getId() %></td>
+	                        <td><%= docObj.getTitle() %></td>
+	                        <td><%= docObj.getDateStart() %></td>
+	                        <td><%= docObj.getDateEnd() %></td>
+	                        <td><%= docObj.getStatus() %></td>
+	                        <td>
+	                          <div class="btn-toolbar" role="toolbar">
+	                            <div class="btn-group mr-2" role="group">
+	                              <button type="button" class="btn" style="background-color: #04AA6D;" data-toggle="modal" data-target="#documentViewModal">View</button>
+	                            </div>
+	                            <div class="btn-group mr-2" role="group">
+	                              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#documentEditModal">Edit</button>
+	                            </div>
+	                            <div class="btn-group" role="group">
+	                              <button id="approveBtn" type="button" class="btn btn-primary">Approve</button>
+	                            </div>
+	                          </div>
+	                        </td>
+	                      </tr>
+                    
+                    
+                    <% } %>
+	                    
                     </tbody>
                     <tfoot>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Version</th>
+                        <th>Title</th>
+                        <th>DateStart</th>
+                        <th>DateEnd</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>

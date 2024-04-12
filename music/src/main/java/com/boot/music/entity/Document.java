@@ -38,6 +38,9 @@ public class Document implements Serializable{
 			, cascade = CascadeType.ALL)
 	private List<Version> versionList;
 	private String sumary;
+	@Column(name = "securityLevel")
+	private int securityLevel;
+	
 	public Document(String title,String sumary, Date dateStart, Date dateEnd, User user) {
 		super();
 		this.title = title;
@@ -96,5 +99,10 @@ public class Document implements Serializable{
 	public Long getId() {
 		return id;
 	}
-	
+	public int getSecurityLevel() {
+		return securityLevel;
+	}
+	public void setSecurityLevel(int securityLevel) {
+		this.securityLevel = securityLevel;
+	}
 }

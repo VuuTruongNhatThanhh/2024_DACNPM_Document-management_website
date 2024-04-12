@@ -8,4 +8,7 @@ import com.boot.music.entity.Document;
 
 public interface DocumentRepo extends JpaRepository<Document, Long>{
 	List<Document> findByStatusID(short statusID);
+	
+	List<Document> findBySecurityLevelLessThanEqual(int accessLevel);
+
 }
