@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -35,61 +34,76 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transaction;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.Email;
+
 @Validated
 @Controller
 @RequestMapping("/")
 public class HomeController {
-//	@Autowired
+    //	@Autowired
 //	private AccountRepo accRepo;
 //		EntityManagerFactory emf= Persistence.createEntityManagerFactory("music");
 //		EntityManager e=emf.createEntityManager();
-	//equivalent to http://localhost:8080/home, return page index.jsp
-	@GetMapping("/home")
-	public ModelAndView home(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("index");
-		model.addObject("demo", "1 object hoặc giá trị cần truyền sang jsp");
-		return model;
-		}
-//	@GetMapping("/acc")
+    //equivalent to http://localhost:8080/home, return page index.jsp
+    @GetMapping("/test")
+    public ModelAndView test(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("test", "test", "1 object hoặc giá trị cần truyền sang jsp");
+        System.out.println("test home controller");
+        return model;
+    }
+
+    @GetMapping("/home")
+    public ModelAndView home(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("index");
+        model.addObject("demo", "1 object hoặc giá trị cần truyền sang jsp");
+        return model;
+    }
+
+
+    //	@GetMapping("/acc")
 //	public ModelAndView account(ModelAndView model , HttpSession session) {
 //		model= new ModelAndView("accounts");
 //
 //		return model;
 //		}
-	@GetMapping("/documents")
-	public ModelAndView doc(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("documents");
+    @GetMapping("/documents")
+    public ModelAndView doc(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("documents");
 
-		return model;
-		}
-	@GetMapping("/login")
-	public ModelAndView login(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("loginAdmin");
+        return model;
+    }
 
-		return model;
-		}
-	@GetMapping("/createAccount")
-	public ModelAndView createAccount(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("create-account");
+    @GetMapping("/login")
+    public ModelAndView login(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("loginAdmin");
 
-		return model;
-		}
-	@GetMapping("/createDoc")
-	public ModelAndView createDoc(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("create-document");
+        return model;
+    }
 
-		return model;
-		}
-	@GetMapping("/report")
-	public ModelAndView report(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("report");
+    @GetMapping("/createAccount")
+    public ModelAndView createAccount(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("create-account");
 
-		return model;
-		}
-	@GetMapping("/statistics")
-	public ModelAndView statistic(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("statistics");
+        return model;
+    }
 
-		return model;
-		}
-	}
+    @GetMapping("/createDoc")
+    public ModelAndView createDoc(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("create-document");
+
+        return model;
+    }
+
+    @GetMapping("/report")
+    public ModelAndView report(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("report");
+
+        return model;
+    }
+
+    @GetMapping("/statistics")
+    public ModelAndView statistic(ModelAndView model, HttpSession session) {
+        model = new ModelAndView("statistics");
+
+        return model;
+    }
+}
