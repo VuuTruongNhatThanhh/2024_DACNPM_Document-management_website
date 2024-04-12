@@ -1,9 +1,9 @@
 package com.boot.music.controller;
 
 import com.boot.music.entity.Document;
-//import com.boot.music.entity.DocumentUpdateRequest;
+import com.boot.music.entity.DocumentUpdateRequest;
 import com.boot.music.repositories.DocumentRepo;
-//import com.boot.music.service.DocumentService;
+import com.boot.music.service.DocumentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +18,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-//	private final DocumentService documentService;
+	private final DocumentService documentService;
 
-//	public HomeController(DocumentService documentService) {
-//		this.documentService = documentService;
-//	}
+	public HomeController(DocumentService documentService) {
+		this.documentService = documentService;
+	}
 
 	@GetMapping("/home")
 	public ModelAndView home(ModelAndView model, HttpSession session) {
@@ -50,19 +50,19 @@ public class HomeController {
 
 
 
-//	@PostMapping("/updateDocument")
-//	@ResponseBody
-//	public String updateDocument(@RequestParam("id") Long id,
-//								 @RequestParam("title") String title,
-//								 @RequestParam("summary") String summary) {
-//		try {
-//			// Cập nhật tiêu đề và tóm tắt của tài liệu
-//			documentService.updateDocument(id, title, summary);
-//			return "Cập nhật tiêu đề và tóm tắt thành công!";
-//		} catch (Exception e) {
-//			return "Đã xảy ra lỗi khi cập nhật tiêu đề và tóm tắt: " + e.getMessage();
-//		}
-//	}
+	@PostMapping("/updateDocument")
+	@ResponseBody
+	public String updateDocument(@RequestParam("id") Long id,
+								 @RequestParam("title") String title,
+								 @RequestParam("summary") String summary) {
+		try {
+			// Cập nhật tiêu đề và tóm tắt của tài liệu
+			documentService.updateDocument(id, title, summary);
+			return "Cập nhật tiêu đề và tóm tắt thành công!";
+		} catch (Exception e) {
+			return "Đã xảy ra lỗi khi cập nhật tiêu đề và tóm tắt: " + e.getMessage();
+		}
+	}
 
 
 	@GetMapping("/login")
