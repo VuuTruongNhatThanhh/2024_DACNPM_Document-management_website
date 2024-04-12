@@ -43,8 +43,8 @@ public class Database {
 			SimpleDateFormat sdf= new SimpleDateFormat("DD-MM-YYYY");
 		
 //			User u= new User("hoa hau", "1@gmail.com", "0855555", "1234ds", 0, 0);
-////			userRe.save(u);
-////			userRe.save(new User("hoa hau2", "2@gmail.com", "08666666", "1234ds", 0, 0));
+//			userRe.save(u);
+//			userRe.save(new User("hoa hau2", "2@gmail.com", "08666666", "1234ds", 0, 0));
 //			Document d= new Document("Phuong an phong tranh thien tai", "Nham doi pho voi tinh hinh thien tai trong tuong lai.... ",
 //					sdf.parse("19-5-2024"), sdf.parse("19-5-2026"),u);
 //			

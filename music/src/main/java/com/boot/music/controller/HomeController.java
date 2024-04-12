@@ -37,7 +37,7 @@ import jakarta.validation.constraints.Email;
 
 @Validated
 @Controller
-
+@RequestMapping("/")
 public class HomeController {
     //	@Autowired
 //	private AccountRepo accRepo;
@@ -46,10 +46,10 @@ public class HomeController {
     //equivalent to http://localhost:8080/home, return page home.jsp
 
     @GetMapping("/home")
-    public ModelAndView home(ModelAndView model, HttpSession session) {
+    public String home(ModelAndView model, HttpSession session) {
         model = new ModelAndView("home");
         model.addObject("demo", "1 object hoặc giá trị cần truyền sang jsp");
-        return model;
+        return "home";
     }
 
 
@@ -88,7 +88,7 @@ public class HomeController {
 
     @GetMapping("/report")
     public ModelAndView report(ModelAndView model, HttpSession session) {
-        model = new ModelAndView("report");
+        model = new ModelAndView("reports");
 
         return model;
     }
