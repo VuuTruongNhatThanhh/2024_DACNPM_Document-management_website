@@ -3,6 +3,8 @@ package org.example.adminsample.service;
 
 import org.example.adminsample.repositories.StatisticsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,9 +18,10 @@ public class StatisticService {
         this.statisticsRepo = statisticsRepo;
     }
 
-    public Long countDocumentsSavedInLastHour() {
-        LocalDateTime end = LocalDateTime.now();
-        LocalDateTime start = end.minusHours(1);
-        return statisticsRepo.countDocumentsInTimeRange(start, end);
+
+
+    public Long countDocumentsInSpecificMonth(String month) {
+        return statisticsRepo.countDocumentsInSpecificMonth(month);
     }
+
 }
