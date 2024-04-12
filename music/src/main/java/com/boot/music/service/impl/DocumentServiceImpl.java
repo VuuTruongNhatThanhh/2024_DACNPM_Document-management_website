@@ -16,6 +16,8 @@ import com.boot.music.service.DocumentService;
 @Service
 public class DocumentServiceImpl implements DocumentService {
 
+	private static final String STATUS_APPROVED = "1";
+
 	@Autowired
 	private DocumentRepo documentRepo;
 
@@ -33,4 +35,8 @@ public class DocumentServiceImpl implements DocumentService {
 		return lstDocument;
 	}
 
+	@Override
+	public List<Document> findAllDocumentApproved() {
+		return documentRepo.findByStatusID(Short.parseShort(STATUS_APPROVED));
+	}
 }

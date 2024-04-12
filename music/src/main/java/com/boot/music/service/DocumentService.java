@@ -7,5 +7,7 @@ import com.boot.music.entity.Document;
 public interface DocumentService {
 	
 	List<Document> getDocumentByPermission(int userId); 
+	
+	List<Document> findAllDocumentApproved();
 
 }
