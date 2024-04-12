@@ -43,11 +43,11 @@ public class HomeController {
 //	private AccountRepo accRepo;
 //		EntityManagerFactory emf= Persistence.createEntityManagerFactory("music");
 //		EntityManager e=emf.createEntityManager();
-    //equivalent to http://localhost:8080/home, return page index.jsp
+    //equivalent to http://localhost:8080/home, return page home.jsp
 
     @GetMapping("/home")
     public ModelAndView home(ModelAndView model, HttpSession session) {
-        model = new ModelAndView("index");
+        model = new ModelAndView("home");
         model.addObject("demo", "1 object hoặc giá trị cần truyền sang jsp");
         return model;
     }
