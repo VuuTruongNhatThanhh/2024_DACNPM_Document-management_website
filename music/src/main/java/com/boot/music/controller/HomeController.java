@@ -56,12 +56,12 @@ public class HomeController {
 
 		return model;
 		}
-	@GetMapping("/documents")
-	public ModelAndView doc(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("documents");
-
-		return model;
-		}
+//	@GetMapping("/documents")
+//	public ModelAndView doc(ModelAndView model , HttpSession session) {
+//		model= new ModelAndView("documents");
+//
+//		return model;
+//		}
 	@GetMapping("/login")
 	public ModelAndView login(ModelAndView model , HttpSession session) {
 		model= new ModelAndView("loginAdmin");
