@@ -37,19 +37,13 @@ import jakarta.validation.constraints.Email;
 
 @Validated
 @Controller
-@RequestMapping("/")
+
 public class HomeController {
     //	@Autowired
 //	private AccountRepo accRepo;
 //		EntityManagerFactory emf= Persistence.createEntityManagerFactory("music");
 //		EntityManager e=emf.createEntityManager();
     //equivalent to http://localhost:8080/home, return page index.jsp
-    @GetMapping("/test")
-    public ModelAndView test(ModelAndView model, HttpSession session) {
-        model = new ModelAndView("test", "test", "1 object hoặc giá trị cần truyền sang jsp");
-        System.out.println("test home controller");
-        return model;
-    }
 
     @GetMapping("/home")
     public ModelAndView home(ModelAndView model, HttpSession session) {
@@ -89,7 +83,6 @@ public class HomeController {
     @GetMapping("/createDoc")
     public ModelAndView createDoc(ModelAndView model, HttpSession session) {
         model = new ModelAndView("create-document");
-
         return model;
     }
 
