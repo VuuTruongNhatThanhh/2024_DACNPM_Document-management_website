@@ -1,8 +1,14 @@
+<%@page import="com.boot.music.entity.User"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <%@ include file="admin-header.jsp" %>
+  
+
+    <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+  <% ArrayList<User> list=(ArrayList<User>) request.getAttribute("user list"); %>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -41,11 +47,21 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <%for(int i=0;i<list.size();i++){ %>
                       <tr>
-                        <td>10001</td>
-                        <td>Võ Thị Hồ Quyên</td>
-                        <td>16130537@st.hcmuaf.edu.vn</td>
-                        <td>Editors</td>
+                        <td><%=list.get(i).getId() %></td>
+                        <td><%=list.get(i).getFullName() %></td>
+                        <td><%=list.get(i).getEmail() %></td>
+                        <td><% String roleName="";
+                        switch(list.get(i).getRole()){
+                        case 1:roleName="Admin";
+                        	break;
+                        case 2:roleName="Editor";
+                        	break;
+                        } %>
+                        <%=roleName %>
+                        </td>
+                       
                         <td>
                           <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group mr-2" role="group">
@@ -60,6 +76,7 @@
                           </div>
                         </td>
                       </tr>
+                      <%} %>
                     </tbody>
                   </table>
                 </div>
@@ -98,7 +115,42 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body"> ... </div>
+              <div class="modal-body"> 
+              <form:form method="POST" modelAttribute="user" action="editUser" >
+               <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>FullName</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <%for(int i=0;i<list.size();i++){ %>
+                      <tr>
+                        <td></td>
+                        <td><%=list.get(i).getFullName() %></td>
+                        <td><%=list.get(i).getEmail() %></td>
+                        <td><% String roleName="";
+                        switch(list.get(i).getRole()){
+                        case 1:roleName="Admin";
+                        	break;
+                        case 2:roleName="Editor";
+                        	break;
+                        } %>
+                        <%=roleName %>
+                        </td>
+                       
+                        
+                      </tr>
+                      <%} %>
+                    </tbody>
+                  </table>
+              </form:form>
+
+			  </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save</button>

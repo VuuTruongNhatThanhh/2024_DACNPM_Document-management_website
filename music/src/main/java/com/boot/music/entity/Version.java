@@ -28,15 +28,24 @@ public class Version {
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@Column(name = "Date_End")
 	private Date dateEnd;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Document document;
 	
 	private byte status_ID;
 	//lob means Large OBject, "c" in clob is Character, b in blob is binary
 	//@Lob
 	private String content;
-	@OneToOne(mappedBy = "version")
-	private Comment comment;
+
+	
+	private String comment;
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
+	public String getComment() {
+		return comment;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -73,12 +82,7 @@ public class Version {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Comment getComment() {
-		return comment;
-	}
-	public void setComment(Comment comment) {
-		this.comment = comment;
-	}
+	
 	public Long getId() {
 		return id;
 	}

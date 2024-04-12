@@ -196,13 +196,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../account-managent/create-account.html" class="nav-link">
+                    <a href="http://localhost:8080/createAccount" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tạo tài khoản</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../account-managent/accounts.html" class="nav-link">
+                    <a href="http://localhost:8080/loadUser" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Danh sách tài khoản</p>
                     </a>
@@ -217,7 +217,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../document-managent/create-document.html" class="nav-link">
+                    <a href="http://localhost:8080/documents" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Create Document</p>
                     </a>
@@ -238,7 +238,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../report-managent/reports.html" class="nav-link">
+                    <a href="http://localhost:8080/report" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Danh sách Report</p>
                     </a>
@@ -253,7 +253,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../statistics-managent/statistics.html" class="nav-link">
+                    <a href="http://localhost:8080/statistics" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Danh sách Statistics</p>
                     </a>

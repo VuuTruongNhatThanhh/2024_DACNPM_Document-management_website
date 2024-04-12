@@ -1,10 +1,14 @@
 package com.boot.music.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.apache.jasper.tagplugins.jstl.core.If;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.View;
@@ -23,7 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.boot.music.entity.Comment;
+import com.boot.music.entity.Document;
+import com.boot.music.entity.User;
+import com.boot.music.repositories.DocumentRepo;
+import com.boot.music.repositories.UserRepo;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -39,7 +47,10 @@ import jakarta.validation.constraints.Email;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-//	@Autowired
+	@Autowired
+	private UserRepo userRe;
+	@Autowired
+	private DocumentRepo docRe;
 //	private AccountRepo accRepo;
 //		EntityManagerFactory emf= Persistence.createEntityManagerFactory("music");
 //		EntityManager e=emf.createEntityManager();
@@ -77,18 +88,56 @@ public class HomeController {
 	@GetMapping("/createDoc")
 	public ModelAndView createDoc(ModelAndView model , HttpSession session) {
 		model= new ModelAndView("create-document");
-
+		model.addObject("page name","Create Document");
 		return model;
 		}
+	
 	@GetMapping("/report")
 	public ModelAndView report(ModelAndView model , HttpSession session) {
-		model= new ModelAndView("report");
-
+		model= new ModelAndView("reports");
+		//find all status pending
+		List<Document> list= docRe.findAllByStatusID((short)1);
+		model.addObject("pending list", list);
+		Map<String, Object> map= new HashMap<>();
+		for (Document document : list) {
+			map.put(document.getId().toString(), document.getVersionList().get(list.size()-1).getContent());
+		}
+		
+		
+		JSONObject json=new JSONObject(map);
+		 String orgJsonData = json.toString();
+		model.addObject("json",orgJsonData);
+		
 		return model;
 		}
+
 	@GetMapping("/statistics")
 	public ModelAndView statistic(ModelAndView model , HttpSession session) {
 		model= new ModelAndView("statistics");
+
+		return model;
+		}
+	@GetMapping("/loadUser")
+	public ModelAndView loadUser(ModelAndView model , HttpSession session) {
+		model= new ModelAndView("accounts");
+		//list user from db
+		ArrayList<User> userList= (ArrayList<User>) userRe.findAll();
+		model.addObject("user list", userList);
+		return model;
+		}
+	@PostMapping("/addComment")
+	public ModelAndView addComment(ModelAndView model , HttpSession session,
+			@RequestParam("comment") String comment,
+			@RequestParam("idinput") Long id) {
+		model= new ModelAndView("reports");
+		Optional<Document> doc= docRe.findById(id);
+		int size=doc.get().getVersionList().size();
+		doc.get().getVersionList().get(size-1).setComment(comment);
+		doc.get().getVersionList().get(size-1).setStatus_ID((byte)4);
+		doc.get().setStatusID((short)4);
+		docRe.save(doc.get());
+		List<Document> list= docRe.findAllByStatusID((short)1);
+		model.addObject("pending list", list);
 
 		return model;
 		}
