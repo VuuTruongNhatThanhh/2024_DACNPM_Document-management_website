@@ -16,7 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.validation.constraints.Email;
 
-	//notice that you need to select @ from jakarta, not from javax
+//notice that you need to select @ from jakarta, not from javax
 @Entity
 @PrimaryKeyJoinColumn(name = "account_Id")
 public class User {
@@ -24,40 +24,41 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	/*
 	 * in DB this attribute will be in col name [Name], if don't have
-	 * 
+	 *
 	 * @Column, default is fullname col
 	 */
-	@Column(name = "Name")
-	private String fullName;
-	
+	@Column(name = "name")
+	private String name;
+
 	/*
 	 * check weather the email follow regexp
-	 * 
+	 *
 	 * @Email(regexp = "/^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$/")
 	 */
+	@Column(unique = true)
 	private String email;
 	/*
 	 * you need to check if phone is in correct format, but for simplicity's sake,
 	 * check for it in front end
-	 */	
+	 */
 	private String phone;
-	
+	@Column(name = "password")
 	private String password;
-	
+
 	private int role;
-	@Column(name = "Access_Level")
+	@Column(name = "access_level")
 	private int accessLevel;
-	
+
 	/*
 	 * 1 user has many documents created by it mappedBy tells hibernate that search
 	 * for Doc bean in User
 	 */
 	@OneToMany(mappedBy = "user",cascade = CascadeType.MERGE)
 	private List<Document> documentList;
-	//blank constructor is needed	
+	//blank constructor is needed
 	public User() {}
 	public int getId() {
 		return id;
@@ -65,11 +66,11 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFullName() {
-		return fullName;
+	public String getName() {
+		return name;
 	}
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -107,19 +108,19 @@ public class User {
 	public void setDocumentList(List<Document> documentList) {
 		this.documentList = documentList;
 	}
-	public User(String fullName,  String email, String phone,
-			String password, int role, int accessLevel) {
+	public User(String name,  String email, String phone,
+				String password, int role, int accessLevel) {
 		super();
-		this.fullName = fullName;
+		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
 		this.role = role;
 		this.accessLevel = accessLevel;
 		documentList=new ArrayList<Document>();
-		
+
 	}
 
-	
-	
+
+
 }

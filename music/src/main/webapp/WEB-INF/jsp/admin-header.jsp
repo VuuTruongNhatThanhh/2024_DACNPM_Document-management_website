@@ -167,8 +167,25 @@
               <img src="../img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block">Võ Thị Hồ Quyên <br>
-                <i style="font-size:12px;">Role: Editors</i>
+              <% String name = (String) session.getAttribute("name");
+                Integer role = (Integer) session.getAttribute("role");
+                String roleName = "";
+                if (role != null) {
+                  switch (role) {
+                    case 1:
+                      roleName = "Admin";
+                      break;
+                    case 2:
+                      roleName = "Editor";
+                      break;
+                    default:
+                      roleName = "Unknown";
+                      break;
+                  }
+                }
+              %>
+              <a href="#" class="d-block"><%= name %><br>
+                <i style="font-size:12px;">Role:<%= roleName %></i>
               </a>
             </div>
           </div>
@@ -188,28 +205,28 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item">
+              <li class="nav-item <% if(role != 1) out.println("d-none"); %>">">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p> Account Management <i class="right fas fa-angle-left"></i>
+                  <p> Quản lý tài khoản <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="../account-managent/create-account.html" class="nav-link">
+                    <a href="/createAccount" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tạo tài khoản</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../account-managent/accounts.html" class="nav-link">
+                    <a href="/acc" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Danh sách tài khoản</p>
                     </a>
                   </li>
                 </ul>
               </li>
-              <li class="nav-item menu-open">
+              <li class="nav-item ">
                 <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p> Document Management <i class="right fas fa-angle-left"></i>
@@ -259,6 +276,14 @@
                     </a>
                   </li>
                 </ul>
+              </li>
+              <li class="nav-item">
+                <a href="/logout" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p> SignOut
+                  </p>
+                </a>
+
               </li>
             </ul>
           </nav>

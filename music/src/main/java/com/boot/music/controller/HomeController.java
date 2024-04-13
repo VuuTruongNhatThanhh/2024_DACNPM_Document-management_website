@@ -26,13 +26,24 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/acc")
-	public ModelAndView account(ModelAndView model, HttpSession session) {
-		model = new ModelAndView("accounts");
-
+//	@Autowired
+//	private AccountRepo accRepo;
+//		EntityManagerFactory emf= Persistence.createEntityManagerFactory("music");
+//		EntityManager e=emf.createEntityManager();
+	// equivalent to http://localhost:8080/home, return page index.jsp
+	@GetMapping("/home")
+	public ModelAndView home(ModelAndView model, HttpSession session) {
+		model = new ModelAndView("index");
+		model.addObject("demo", "1 object hoặc giá trị cần truyền sang jsp");
 		return model;
 	}
 
+//	@GetMapping("/acc")
+//	public ModelAndView account(ModelAndView model , HttpSession session) {
+//		model= new ModelAndView("accounts");
+//
+//		return model;
+//		}
 	@GetMapping("/documents")
 	public ModelAndView doc(ModelAndView model, HttpSession session) {
 		model = new ModelAndView("documents");
