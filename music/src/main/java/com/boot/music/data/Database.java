@@ -79,7 +79,7 @@ public class Database {
 			docRe.findByStatusID((short)1);
 	//		logger.info(docRe.findByStatusID((short)1).get(0).getVersionList().get(0).getContent());
 		
-			logger.info(docRe.findAllByStatusID((short)1).get(0).getSumary());
+//			logger.info(docRe.findAllByStatusID((short)1).get(0).getSumary());
 //			Locale locale = new Locale("vi", "VN");      
 //			NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 //			Category c1= new Category("Trinh cong son1");
