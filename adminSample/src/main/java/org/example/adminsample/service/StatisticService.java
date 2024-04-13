@@ -8,6 +8,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,4 +38,9 @@ public class StatisticService {
 
         return countsByMonth;
     }
+
+    public Long countDocInADay() {
+        return statisticsRepo.countDocumentsSavedToday();
+    }
+
 }

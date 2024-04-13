@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <h1>Saved by month: ${countDocbyMonth}</h1>
+                    <h1>Saved in today: ${countDocbyDay}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -22,7 +22,6 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="breadcrumb-item active">Statistics Dashboard</li>
-                        <li class="breadcrumb-item active">Saved by hour: ${countDocbyHour}</li>
                         <li class="breadcrumb-item active"></li>
 
                     </ol>
@@ -231,7 +230,7 @@
                 pointStrokeColor: 'rgba(60,141,188,1)',
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(60,141,188,1)',
-                data: [1,2,3,5,3,21,1]
+                data: [1, 2, 3, 5, 3, 21, 1]
             }, {
                 label: 'Electronics',
                 backgroundColor: 'rgba(210, 214, 222, 1)',

@@ -17,12 +17,4 @@ public class HomeController {
     }
 
 
-
-    @GetMapping("/login")
-    public ModelAndView login(ModelAndView model) {
-        model = new ModelAndView("loginAdmin");
-        return model;
-    }
-
-
 }
