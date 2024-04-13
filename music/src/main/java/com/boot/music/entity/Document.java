@@ -33,7 +33,8 @@ public class Document implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "UserID")
 	public User user;
-	private short statusID;
+	@Column(name = "statusid")
+	private int statusID;
 	@OneToMany(mappedBy = "document"
 			, cascade = CascadeType.ALL)
 	private List<Version> versionList;
@@ -81,10 +82,10 @@ public class Document implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public short getStatus() {
+	public int getStatus() {
 		return statusID;
 	}
-	public void setStatus(short status_ID) {
+	public void setStatus(int status_ID) {
 		this.statusID = status_ID;
 	}
 	public List<Version> getVersionList() {
