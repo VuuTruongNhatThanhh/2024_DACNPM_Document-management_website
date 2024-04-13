@@ -43,4 +43,12 @@ public class StatisticService {
         return statisticsRepo.countDocumentsSavedToday();
     }
 
+    public Long countDocSavedThisMonth() {
+        return statisticsRepo.countDocSavedThisMonth();
+    }
+
+    public Long countDocInLastHour() {
+        return statisticsRepo.countDocInLastHour();
+    }
+
 }

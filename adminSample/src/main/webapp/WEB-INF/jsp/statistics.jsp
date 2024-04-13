@@ -13,9 +13,7 @@
                     <h1>Statistics Dashboard</h1>
                 </div>
 
-                <div class="col-sm-6">
-                    <h1>Saved in today: ${countDocbyDay}</h1>
-                </div>
+                <%--            have a div that have info of doc been saved, in houur , in day, and in month--%>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
@@ -27,6 +25,49 @@
                     </ol>
                 </div>
             </div>
+            <!-- Basic Info -->
+            <div class="row">
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>${countDocSavedInLastHour}</h3>
+                            <p>Documents Saved in Last Hour</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-clock"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>${countDocbyDay}</h3>
+                            <p>Documents Saved Today</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>${countDocSavedThisMonth}</h3>
+                            <p>Documents Saved This Month</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-archive"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- ./row -->
         </div>
         <!-- /.container-fluid -->
     </section>

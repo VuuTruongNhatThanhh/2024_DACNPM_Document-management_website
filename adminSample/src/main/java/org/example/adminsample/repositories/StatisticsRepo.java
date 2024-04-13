@@ -14,4 +14,10 @@ public interface StatisticsRepo extends JpaRepository<Document, Long> {
 
     @Query(value = "SELECT COUNT(*) FROM Document d WHERE DATE(d.Date_Start) = CURDATE()", nativeQuery = true)
     Long countDocumentsSavedToday();
+
+    @Query(value = "SELECT COUNT(*) FROM Document d WHERE MONTH(d.Date_Start) = MONTH(CURDATE())", nativeQuery = true)
+    Long countDocSavedThisMonth();
+
+    @Query(value = "SELECT COUNT(*) FROM Document d WHERE DATE(d.Date_Start) = DATE_SUB(CURDATE(), INTERVAL 1 HOUR)", nativeQuery = true)
+    Long countDocInLastHour();
 }

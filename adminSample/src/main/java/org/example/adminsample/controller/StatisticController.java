@@ -16,9 +16,9 @@ public class StatisticController {
     @GetMapping("/statistics")
     public ModelAndView statistics(ModelAndView model) {
         model = new ModelAndView("statistics");
+        model.addObject("countDocSavedInLastHour", StatisticService.countDocInLastHour());
         model.addObject("countDocbyDay", StatisticService.countDocInADay());
-        System.out.println("Count by day: " + StatisticService.countDocInADay());
-        model.addObject("countDocbyMonth", StatisticService.countDocumentsInSpecificMonth("April"));
+        model.addObject("countDocSavedThisMonth", StatisticService.countDocSavedThisMonth());
         model.addObject("countDocbyAllMonths", StatisticService.countDocumentsInAllMonths());
         System.out.println("Count by all months: " + StatisticService.countDocumentsInAllMonths());
         return model;
