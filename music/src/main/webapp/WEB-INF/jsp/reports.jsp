@@ -7,7 +7,7 @@
 <html lang="en">
   <%@ include file="admin-header.jsp" %>
   <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-  <%String json= (String)request.getAttribute("json"); %>
+
   <% ArrayList<Document> list=(ArrayList<Document>) request.getAttribute("pending list"); %>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -99,8 +99,8 @@
 				
 				</div>
 			<form action="addComment" method="post">
-			<input name="idinput" id="idinput" S value="">
-              <textarea name="comment" rows="5" cols="60"></textarea>
+			<input name="idinput" type="hidden" id="idinput" S value="">
+              <textarea name="comment" rows="5" cols="50"></textarea>
               
               <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Save</button>

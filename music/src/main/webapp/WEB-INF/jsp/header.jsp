@@ -84,6 +84,11 @@
       table {
         border-collapse: collapse;
       }
+      
+      .Wrap {
+		    overflow: auto;
+		    min-height: 200px;
+		}
     </style>
   </head>
   <body>
@@ -98,28 +103,22 @@
           <div class="DropdownMenu">
             <ul class="MenuList">
               <li class="TopMenu" style="display:inline-block">
-                <a href="index.html">
+                <a href="#">
                   <img src="https://datafiles.chinhphu.vn/cpp/1/Logo/quoc-huy.png" class="image">
                   <span class="trang-chu-68147">Trang chủ</span>
                 </a>
               </li>
               <li class="TopMenu" style="display:inline-block">
-                <a href="chinh-phu.html">
+                <a href="#">
                   <span class="chinh-phu-70544">Chính phủ</span>
                 </a>
               </li>
               <li class="TopMenu" style="display:inline-block">
-                <a href="cong-dan.html">
+                <a href="#">
                   <span class="cong-dan-68149">Công dân</span>
                 </a>
               </li>
             </ul>
-            <div class="navbar-button" onclick="onToggleNavbar()">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="navbar-overlay"></div>
           </div>
         </div>
       </div>
