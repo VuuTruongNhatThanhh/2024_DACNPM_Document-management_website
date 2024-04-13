@@ -8,6 +8,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class StatisticService {
@@ -19,9 +21,19 @@ public class StatisticService {
     }
 
 
-
     public Long countDocumentsInSpecificMonth(String month) {
         return statisticsRepo.countDocumentsInSpecificMonth(month);
     }
 
+    public Map<String, Long> countDocumentsInAllMonths() {
+        Map<String, Long> countsByMonth = new HashMap<>();
+        String[] months = {"January", "February", "March", "April", "May", "June", "July"};
+
+        for (String month : months) {
+            Long count = statisticsRepo.countDocumentsInSpecificMonth(month);
+            countsByMonth.put(month, count);
+        }
+
+        return countsByMonth;
+    }
 }

@@ -16,7 +16,8 @@ public class StatisticController {
         model = new ModelAndView("statistics");
 
         model.addObject("countDocbyMonth", StatisticService.countDocumentsInSpecificMonth("April"));
-        System.out.println("Count by month: " + StatisticService.countDocumentsInSpecificMonth("April"));
+        model.addObject("countDocbyAllMonths", StatisticService.countDocumentsInAllMonths());
+        System.out.println("Count by all months: " + StatisticService.countDocumentsInAllMonths());
         return model;
     }
 }
