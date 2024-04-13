@@ -34,7 +34,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form id="my-form" action="/documents" method="post"
+                        <form id="my-form" action="/addDocument"  method="post"
                               style="display: flex; flex-direction: column">
                             <label for="title">Tiêu đề:</label>
                             <input type="text" id="title" name="title" required>
@@ -47,7 +47,7 @@
                                     <label for="dateEnd">Ngày kết thúc:</label>
                                     <input type="date" id="dateEnd" name="dateEnd">
                                 </div>
-                                <button type="button"
+                                <button type="submit"
                                         class="btn btn-primary"
                                         data-toggle="modal"
                                         data-target="#exampleModal"
@@ -57,6 +57,7 @@
                                 </button>
                             </div>
                         </form>
+
                     </div>
                     <div class="card-footer"> hướng dẫn sử dụng =))</div>
                 </div>
