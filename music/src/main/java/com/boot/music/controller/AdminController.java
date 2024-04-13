@@ -10,15 +10,13 @@ import com.boot.music.service.DocumentService;
 
 @Controller
 public class AdminController {
-	
-	 @Autowired 
-	 private DocumentService documentService; 
+
+	@Autowired
+	private DocumentService documentService;
 
 	@GetMapping("/Admin/documents")
 	public String getDocumentList(ModelMap model, @RequestParam int userId) {
-		
 		model.addAttribute("lstDocument", documentService.getDocumentByPermission(userId));
-		
 		return "documents";
 	}
 }

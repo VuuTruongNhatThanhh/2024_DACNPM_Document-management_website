@@ -41,10 +41,10 @@ public class Database {
 		@Override
 		public void run(String... args) throws Exception {
 			SimpleDateFormat sdf= new SimpleDateFormat("DD-MM-YYYY");
-		
+			
 //			User u= new User("hoa hau", "1@gmail.com", "0855555", "1234ds", 0, 0);
-////			userRe.save(u);
-////			userRe.save(new User("hoa hau2", "2@gmail.com", "08666666", "1234ds", 0, 0));
+//			userRe.save(u);
+//			userRe.save(new User("hoa hau2", "2@gmail.com", "08666666", "1234ds", 0, 0));
 //			Document d= new Document("Phuong an phong tranh thien tai", "Nham doi pho voi tinh hinh thien tai trong tuong lai.... ",
 //					sdf.parse("19-5-2024"), sdf.parse("19-5-2026"),u);
 //			
@@ -76,10 +76,10 @@ public class Database {
 //			Version v= new Version("ver1", sdf.parse("19-5-2024"), sdf.parse("19-5-2024"), d, "phuong an neu ra nhung diem can luu y....");
 //			d.getVersionList().add(v);
 //			docRe.save(d);
-//			docRe.findByStatusID((short)1);
-//			logger.info(docRe.findByStatusID((short)1).get(0).getTitle());
-			
-			
+			docRe.findByStatusID((short)1);
+	//		logger.info(docRe.findByStatusID((short)1).get(0).getVersionList().get(0).getContent());
+		
+			logger.info(docRe.findAllByStatusID((short)1).get(0).getSumary());
 //			Locale locale = new Locale("vi", "VN");      
 //			NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 //			Category c1= new Category("Trinh cong son1");

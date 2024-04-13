@@ -30,17 +30,29 @@ public class Document implements Serializable{
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@Column(name = "Date_End")
 	private Date dateEnd;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "UserID")
 	public User user;
 	private short statusID;
 	@OneToMany(mappedBy = "document"
-			, cascade = CascadeType.ALL)
+			, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="versionID")
 	private List<Version> versionList;
 	private String sumary;
-	@Column(name = "securityLevel")
+	@Column(name = "Security Level")
 	private int securityLevel;
-	
+	public short getStatusID() {
+		return statusID;
+	}
+	public void setStatusID(short statusID) {
+		this.statusID = statusID;
+	}
+	public int getSecurityLevel() {
+		return securityLevel;
+	}
+	public void setSecurityLevel(int securityLevel) {
+		this.securityLevel = securityLevel;
+	}
 	public Document(String title,String sumary, Date dateStart, Date dateEnd, User user) {
 		super();
 		this.title = title;
@@ -49,6 +61,7 @@ public class Document implements Serializable{
 		this.dateEnd = dateEnd;
 		this.user = user;
 		this.statusID=1;
+		this.securityLevel=1;
 		versionList= new ArrayList<Version>();
 	}
 	public String getSumary() {
@@ -98,11 +111,5 @@ public class Document implements Serializable{
 	}
 	public Long getId() {
 		return id;
-	}
-	public int getSecurityLevel() {
-		return securityLevel;
-	}
-	public void setSecurityLevel(int securityLevel) {
-		this.securityLevel = securityLevel;
 	}
 }
