@@ -14,8 +14,11 @@ public class DocumentService {
     @Autowired
     private DocumentRepo documentRepository;
 
+    public List<Document> getAllDocuments() {
+        return documentRepository.findAll();
+    }
     // Cập nhật tiêu đề và tóm tắt của tài liệu
-    public void updateDocument(Long id, String title, String summary) {
+    public void updateDocument(int id, String title, String summary) {
         Optional<Document> documentOptional = documentRepository.findById(id);
         if (documentOptional.isPresent()) {
             Document document = documentOptional.get();
@@ -24,6 +27,17 @@ public class DocumentService {
             documentRepository.save(document);
         } else {
             throw new IllegalArgumentException("Không tìm thấy tài liệu với ID " + id);
+        }
+    }
+    public void updateDocumentStatus(int documentId, int newStatus) {
+        Optional<Document> optionalDocument = documentRepository.findById(documentId);
+        if (optionalDocument.isPresent()) {
+            Document document = optionalDocument.get();
+            document.setStatus( newStatus);
+            documentRepository.save(document);
+        } else {
+            // Xử lý trường hợp không tìm thấy tài liệu
+            throw new RuntimeException("Không tìm thấy tài liệu với ID: " + documentId);
         }
     }
 }

@@ -50,12 +50,12 @@ public class HomeController {
 @Autowired
 private DocumentRepo documentRepo;
 
-	@GetMapping("/documents")
-	public String documents(Model model) {
-		List<Document> documents = documentRepo.findAll();
-		model.addAttribute("documents", documents);
-		return "documents";
-	}
+//	@GetMapping("/documents")
+//	public String documents(Model model) {
+//		List<Document> documents = documentRepo.findAll();
+//		model.addAttribute("documents", documents);
+//		return "documents";
+//	}
 	@GetMapping("/login")
 	public ModelAndView login(ModelAndView model , HttpSession session) {
 		model= new ModelAndView("loginAdmin");
@@ -89,7 +89,7 @@ private DocumentRepo documentRepo;
 
 	@PostMapping("/updateDocument")
 	@ResponseBody
-	public String updateDocument(@RequestParam("id") Long id,
+	public String updateDocument(@RequestParam("id") int id,
 								 @RequestParam("title") String title,
 								 @RequestParam("summary") String summary) {
 		try {

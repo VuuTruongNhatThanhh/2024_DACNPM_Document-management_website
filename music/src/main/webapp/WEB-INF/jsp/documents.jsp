@@ -72,11 +72,24 @@
                                 <td>
                                     <div class="btn-toolbar" role="toolbar">
                                         <div class="btn-group mr-2" role="group">
-                                            <button type="button" class="btn" style="background-color: #04AA6D"
-                                                    data-toggle="modal" data-target="#documentViewModal${document.id}">
+                                            <button type="button" class="btn btn-primary btn-view" data-toggle="modal"
+                                                    data-target="#documentViewModal" data-id="<%= document.getId() %>"
+                                                    data-title="<%= document.getTitle() %>"
+                                                    data-summary="<%= document.getSumary() %>">
                                                 Xem
                                             </button>
                                         </div>
+                                        <div class="btn-group mr-2" role="group">
+                                            <button type="button" class="btn btn-warning btn-edit" data-toggle="modal"
+                                                    data-target="#documentEditModal" data-id="<%= document.getId() %>"
+                                                    data-title="<%= document.getTitle() %>"
+                                                    data-summary="<%= document.getSumary() %>">
+                                                Sửa
+                                            </button>
+
+
+                                        </div>
+
 <%--                                        <div class="btn-group mr-2" role="group">--%>
 <%--                                            <% if (document.getStatus() != 3 && document.getStatus() != 4) { %>--%>
 <%--                                            <button type="button" class="btn btn-warning" data-toggle="modal"--%>
@@ -124,19 +137,53 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tên văn bản</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <!-- Tiêu đề sẽ được cập nhật bằng JavaScript -->
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body"> Nội dung tài liệu...</div>
+                <div class="modal-body" id="documentContent">
+                    <!-- Nội dung summary sẽ được cập nhật bằng JavaScript -->
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Modal edit -->
+    <div class="modal fade" id="documentEditModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalTitle">Chỉnh sửa văn bản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editTitle">Tiêu đề</label>
+                        <input type="text" class="form-control" id="editTitle" placeholder="Nhập tiêu đề">
+                    </div>
+                    <div class="form-group">
+                        <label for="editSummary">Tóm tắt</label>
+                        <textarea class="form-control" id="editSummary" rows="3" placeholder="Nhập tóm tắt"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal confirm -->
     <div class="modal fade" id="documentEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -176,6 +223,7 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
         <b>DACNPM</b>
@@ -209,6 +257,28 @@
 <!-- AdminLTE App -->
 <script src="../js/adminlte.min.js"></script>
 <script>
+    $('.btn-view').click(function () {
+        var documentTitle = $(this).data('title'); // Lấy tiêu đề từ thuộc tính data-title của button "View"
+        var documentSummary = $(this).data('summary'); // Lấy summary từ thuộc tính data-summary của button "View"
+
+        $('#exampleModalLabel').text(documentTitle); // Thiết lập tiêu đề của modal bằng tiêu đề của văn bản
+        $('#documentContent').text(documentSummary); // Thiết lập nội dung summary của modal bằng nội dung summary của văn bản
+
+    });
+    $('.btn-edit').click(function () {
+        var id = $(this).data('id'); // Lấy ID từ thuộc tính data-id của button "Edit"
+        var title = $(this).data('title'); // Lấy tiêu đề từ thuộc tính data-title của button "Edit"
+        var summary = $(this).data('summary'); // Lấy tóm tắt từ thuộc tính data-summary của button "Edit"
+
+        // Đặt nội dung tiêu đề và tóm tắt vào các trường trong modal chỉnh sửa
+        $('#documentEditModal').data('id', id); // Lưu ID vào thuộc tính data-id của modal chỉnh sửa
+        $('#editTitle').val(title); // Đặt giá trị của tiêu đề vào trường nhập liệu trong modal
+        $('#editSummary').val(summary); // Đặt giá trị của tóm tắt vào trường nhập liệu trong modal
+
+        // Mở modal chỉnh sửa
+        $('#documentEditModal').modal('show');
+    });
+
     $(function () {
         $("#example1").DataTable({
             "responsive": true,
@@ -221,6 +291,34 @@
         });$("#declineBtn").click(function () {
             // Hiển thị confirm dialog
             confirm("Bạn có chắc chắn từ chối tài liệu này?");
+        });
+    });
+
+    $(document).ready(function () {
+        $('#saveChangesBtn').click(function () {
+            var id = $('#documentEditModal').data('id'); // Lấy ID từ thuộc tính data-id của modal
+            var newTitle = $('#editTitle').val(); // Lấy giá trị mới của tiêu đề từ trường nhập liệu
+            var newSummary = $('#editSummary').val(); // Lấy giá trị mới của tóm tắt từ trường nhập liệu
+
+            // Gửi yêu cầu AJAX để cập nhật tiêu đề và tóm tắt của văn bản
+            $.ajax({
+                type: "POST",
+                url: "/updateDocument", // Địa chỉ URL của endpoint để cập nhật tài liệu
+                data: {
+                    id: id, // Truyền ID của văn bản
+                    title: newTitle, // Truyền giá trị mới của tiêu đề
+                    summary: newSummary // Truyền giá trị mới của tóm tắt
+                },
+                success: function (response) {
+                    // Xử lý khi cập nhật thành công
+                    alert(response); // Hiển thị thông báo thành công
+                    location.reload(); // Tải lại trang để cập nhật giao diện
+                },
+                error: function (xhr, status, error) {
+                    // Xử lý khi có lỗi xảy ra
+                    alert("Đã xảy ra lỗi: " + error); // Hiển thị thông báo lỗi
+                }
+            });
         });
     });
 </script>
