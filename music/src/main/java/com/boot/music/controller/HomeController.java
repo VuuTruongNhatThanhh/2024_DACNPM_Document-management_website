@@ -97,16 +97,10 @@ public class HomeController {
 		model= new ModelAndView("reports");
 		//find all status pending
 		List<Document> list= docRe.findAllByStatusID((short)1);
+		
 		model.addObject("pending list", list);
-		Map<String, Object> map= new HashMap<>();
-		for (Document document : list) {
-			map.put(document.getId().toString(), document.getVersionList().get(list.size()-1).getContent());
-		}
+	
 		
-		
-		JSONObject json=new JSONObject(map);
-		 String orgJsonData = json.toString();
-		model.addObject("json",orgJsonData);
 		
 		return model;
 		}

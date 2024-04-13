@@ -36,6 +36,7 @@ public class Document implements Serializable{
 	private short statusID;
 	@OneToMany(mappedBy = "document"
 			, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="versionID")
 	private List<Version> versionList;
 	private String sumary;
 	@Column(name = "Security Level")
