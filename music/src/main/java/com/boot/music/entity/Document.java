@@ -30,45 +30,31 @@ public class Document implements Serializable{
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@Column(name = "Date_End")
 	private Date dateEnd;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "UserID")
 	public User user;
-	private short statusID;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "statusID")
+	private Status status;
 	@OneToMany(mappedBy = "document"
-			, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="versionID")
+			, cascade = CascadeType.ALL)
 	private List<Version> versionList;
-	private String sumary;
-	@Column(name = "Security Level")
-	private int securityLevel;
-	public short getStatusID() {
-		return statusID;
-	}
-	public void setStatusID(short statusID) {
-		this.statusID = statusID;
-	}
-	public int getSecurityLevel() {
-		return securityLevel;
-	}
-	public void setSecurityLevel(int securityLevel) {
-		this.securityLevel = securityLevel;
-	}
-	public Document(String title,String sumary, Date dateStart, Date dateEnd, User user) {
+	private String content;
+	public Document(String title, String content, Date dateStart, Date dateEnd, User user, int statusIndex, List<Status> statusList) {
 		super();
 		this.title = title;
-		this.sumary=sumary;
+		this.content = content;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.user = user;
-		this.statusID=1;
-		this.securityLevel=1;
+		this.status = statusList.get(statusIndex);
 		versionList= new ArrayList<Version>();
 	}
-	public String getSumary() {
-		return sumary;
+	public String getContent() {
+		return content;
 	}
-	public void setSumary(String sumary) {
-		this.sumary = sumary;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public Document() {
 		super();
@@ -97,12 +83,14 @@ public class Document implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public short getStatus() {
-		return statusID;
+
+	public Status  getStatus() {
+		return status;
 	}
-	public void setStatus(short status_ID) {
-		this.statusID = status_ID;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
+
 	public List<Version> getVersionList() {
 		return versionList;
 	}
@@ -112,5 +100,5 @@ public class Document implements Serializable{
 	public Long getId() {
 		return id;
 	}
-	
+
 }
