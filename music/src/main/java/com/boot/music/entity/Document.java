@@ -96,5 +96,5 @@ public class Document implements Serializable{
 	public Long getId() {
 		return id;
 	}
-	
+
 }

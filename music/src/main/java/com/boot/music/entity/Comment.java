@@ -15,23 +15,23 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Lob
-	private Clob content;
+	
+	private String content;
 	@OneToOne
 	@JoinColumn(name = "Version_ID")
 	private Version version;
 	public Comment() {
 		super();
 	}
-	public Comment(Clob content, Version version) {
+	public Comment(String content, Version version) {
 		super();
 		this.content = content;
 		this.version = version;
 	}
-	public Clob getContent() {
+	public String getContent() {
 		return content;
 	}
-	public void setContent(Clob content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 	public Version getVersion() {
